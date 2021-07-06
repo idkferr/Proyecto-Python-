@@ -65,6 +65,7 @@ def opcion1():
   # comentar
 """
 def graficaNoAcumulativo():
+	print('aqui muestro la grafica no acumulativa')
 	break
 
 """
