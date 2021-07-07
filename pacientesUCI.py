@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 datosUCI = []
-regiones = ["Arica y Parinacota","Tarapacá","Antofagasta","Atacama","Coquimbo","Valparaíso","Metropolitana","O’Higgins","Maule","Ñuble","Biobío","Araucanía","Los Ríos","Los Lagos","Aysén","Magallanes"]
+regiones = []
 cod_region = ["15","1","2","3","4","5","13","6","7","16","8","9","14","10","11","12"]
 
 
@@ -15,6 +15,9 @@ def carga_datos():
 		for i in f.readlines():
 			fila = i.split(",")
 			datosUCI.append(fila)
+			if fila[0] not in regiones:
+				regiones.append(fila[0])
+	regiones.pop(0)
 	datosUCI.pop(0)   # eliminamos primera fila ya que son los títulos del archivo csv
 
 """
@@ -24,6 +27,7 @@ def carga_datos():
 """
 def main():
 	carga_datos()
+	print(regiones)
 	print("\nBienvenido al sistema de gestión de pacientes UCI nacional\nseleccione una de las siguientes opciones")
 	print("(1) Mostrar gráfico de pacientes UCI de las últimas dos semanas de una región")
 	print("(2) Generar análisis estadístico por región")
@@ -127,20 +131,57 @@ def listarCodigoRegiones():
 			print(cod_region[idx] + "     | " + value)
 
 
-"""
-  # comentar
-"""
+
+
+
+
+
+
+
+""" # Sumamos los pacientes UCI por región y día."""				
+def suma_de_Datos (regiones):
+	total_datos = []
+	for region in regiones:
+		suma_datos = 0
+		for i in datosUCI:
+			if region == i[0]: 
+				suma_datos += int(i[4])
+		total_datos.append(suma_datos)
+	return total_datos
+
+"""#Se hace una comparacion de los resultados y se muestra cual es el maximo y minimo de pacientes UCI dentro  de las regiones."""
 def UCImaxYmin():
-	break
+	datos = suma_de_Datos (regiones)
+	print (datos)
+	print (regiones)
+	print("\nRegión      |    Pacientes UCI")
+	print("--------------------------------")
+
+	minimo = min(datos)
+	maximo = max(datos)
+	region_max = regiones[datos.index(maximo)]
+	region_min = regiones[datos.index(minimo)]
+	
+	print (region_min + "\t"+ "\t" + str(minimo))
+	print (region_max + "\t" + str(maximo))
+	
 
 
 
-"""
+
+
+
+
+
+
+
+
+
   # volver al menú principal
   # entradas: usuario selecciona opción S/N
   # salida 'S': vuelve al menú principal
   # salida 'N': cierra el programa
-"""
+
 def volver():
 	accion = input("\n¿Volver? (s/n): ").upper()
 
