@@ -1,11 +1,29 @@
 import matplotlib.pyplot as plt
 
+datosUCI = []
+regiones = ["Arica y Parinacota","Tarapacá","Antofagasta","Atacama","Coquimbo","Valparaíso","Metropolitana","O’Higgins","Maule","Ñuble","Biobío","Araucanía","Los Ríos","Los Lagos","Aysén","Magallanes"]
+cod_region = ["15","1","2","3","4","5","13","6","7","16","8","9","14","10","11","12"]
+
+
+"""
+  # Método que carga los datos del CSV en lista datosUCI
+  # entradas: archivo csv
+  # salida: lista con datos del csv
+"""
+def carga_datos():
+	with open("UCI_std.csv","r",encoding="utf-8") as f:
+		for i in f.readlines():
+			fila = i.split(",")
+			datosUCI.append(fila)
+	datosUCI.pop(0)   # eliminamos primera fila ya que son los títulos del archivo csv
+
 """
   # Método inicial que muestra el menú del software
   # entradas: usuario selecciona opción
   # salida: depende de selección de usuario 
 """
 def main():
+	carga_datos()
 	print("\nBienvenido al sistema de gestión de pacientes UCI nacional\nseleccione una de las siguientes opciones")
 	print("(1) Mostrar gráfico de pacientes UCI de las últimas dos semanas de una región")
 	print("(2) Generar análisis estadístico por región")
@@ -20,12 +38,10 @@ def main():
 		print("soy la opción 2")
 		volver()
 	if accion=='3':
-		# llamar método listarCodigoRegiones()
-		print("soy la opción 3")
+		listarCodigoRegiones()
 		volver()
 	if accion=='4':
-		# llamar método UCImaxYmin()
-		print("soy la opción 4")
+		UCImaxYmin()
 		volver()
 	if accion=='5':
 		# cierra el programa
@@ -46,45 +62,70 @@ def opcion1():
 	print("(c) volver al menú principal")
 	accion = input("\nIngrese acción: ").upper()
 	if accion=='A':
-		# mostrar grafico, llamando a def graficaNoAcumulativo()
-		#este print es solo para ustedes, lo deben borrar
-		print('Concultamos la región a mostrar por número o código y luego\nMostramos gráfico No Acumulativo y después preguntamos a usuario si quiere volver al menu principal')
+		graficaNoAcumulativo()
 		volver()
 
 	if accion=='B':
-		# mostrar grafico, llamando a def graficaAcumulativo()
-		#este print es solo para ustedes, lo deben borrar
-		print('Concultamos la región a mostrar por número o código y luego\nMostramos gráfico Acumulativo y después preguntamos a usuario si quiere volver al menu principal')
+		graficaAcumulativo()
 		volver()
 
 	if accion=='C':
 		main()
 
-
 """
   # comentar
 """
 def graficaNoAcumulativo():
-	print('aqui muestro la grafica no acumulativa')
-	break
+	seleccion = input("\nPara generar la gráfica NO ACUMULATIVA, seleccione el nombre o el código de la región: ")
+	# tenemos que validar que lo ingresado sea efectivamente algo válido, de otra forma, solicitamos nuevamente el ingreso de la región
+	valida_region(seleccion, 'graficaNoAcumulativo')
+	# si pasó la validación del método valida_region(), entonces graficamos:
+	print(datosUCI[0])
+
+
 
 """
   # comentar
 """
 def graficaAcumulativo():
-	break
+	seleccion = input("\nPara generar la gráfica ACUMULATIVA, seleccione el nombre o el código de la región: ")
+	# tenemos que validar que lo ingresado sea efectivamente algo válido, de otra forma, solicitamos nuevamente el ingreso de la región
+	valida_region(seleccion, 'graficaAcumulativo')
+	# si pasó la validación del método valida_region(), entonces graficamos:
+	print(datosUCI[0])
+
+
 
 """
-  # comentar
+  # valida que la región ingresada, ya sea por su nombre o código, exista
+  # entrada: input usuario (region/código)
+  # entrada: string para volver al submenú de donde estaba
+  # salida: mensaje de validación correcta | mensaje de error y vuelta a submenú
 """
-def analytics():
-	break
+def valida_region(seleccion, way_back):
+	if seleccion in regiones or seleccion in cod_region:
+		print("\n\nVALIDACIÓN CORRECTA: " + seleccion)
+	else:
+		print("\n\nERROR: Región no se encuentra en sistema, verifique ortografía o mayúsculas\n\n")
+		if way_back == "graficaNoAcumulativo":
+			graficaNoAcumulativo()
+		else:
+			graficaAcumulativo()
+
 
 """
-  # comentar
+  # Listar nombre de las regiones con su respectivo código
+  # salida tabla con regiones y códigos
 """
 def listarCodigoRegiones():
-	break
+	print("\nCódigo | Región")
+	print("-------------------------")
+	for idx,value in enumerate(regiones):
+		if len(cod_region[idx]) == 1:
+			print(" " + cod_region[idx] + "     | " + value)
+		else:
+			print(cod_region[idx] + "     | " + value)
+
 
 """
   # comentar
