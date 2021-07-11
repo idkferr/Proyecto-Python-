@@ -116,6 +116,29 @@ def valida_region(seleccion, way_back):
 		else:
 			graficaAcumulativo()
 
+def validar_region():
+    with open("UCI_std.csv","r",encoding="utf-8") as f:  
+        validacion_region = []
+        for fregion in f.readlines():
+            region = fregion.split(",") 
+            if region[0] not in validacion_region  and region[1] != "Región":
+                validacion_region .append(region[1])
+                validacion_region .append(region[2])
+    return validacion_region 
+
+def filtro_región(selección):
+		with open("UCI_std.csv","r",encoding="utf-8") as f:
+			filtrar = []
+			for region in f.readlines():
+				opcion = region.split(",")
+            	if selección in opcion: 
+                	filtrar.append(opcion)
+		return filtrar
+	
+	
+
+
+	
 
 """
   # Listar nombre de las regiones con su respectivo código
@@ -129,12 +152,6 @@ def listarCodigoRegiones():
 			print(" " + cod_region[idx] + "     | " + value)
 		else:
 			print(cod_region[idx] + "     | " + value)
-
-
-
-
-
-
 
 
 
@@ -165,13 +182,6 @@ def UCImaxYmin():
 	print (region_min + "\t"+ "\t" + str(minimo))
 	print (region_max + "\t" + str(maximo))
 	
-
-
-
-
-
-
-
 
 
 
