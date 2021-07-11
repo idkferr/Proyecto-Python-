@@ -27,6 +27,7 @@ def carga_datos():
 """
 def main():
 	carga_datos()
+	validar_region()
 	print(regiones)
 	print("\nBienvenido al sistema de gestión de pacientes UCI nacional\nseleccione una de las siguientes opciones")
 	print("(1) Mostrar gráfico de pacientes UCI de las últimas dos semanas de una región")
@@ -38,8 +39,8 @@ def main():
 	if accion=='1':
 		opcion1()
 	if accion=='2':
-		# llamar método analytics() para generar estadística y consultar si volver o cerrar el programa
-		print("soy la opción 2")
+		input ("Ingrese el nombre o código de la región")
+		filtro_región()
 		volver()
 	if accion=='3':
 		listarCodigoRegiones()
@@ -117,23 +118,30 @@ def valida_region(seleccion, way_back):
 			graficaAcumulativo()
 
 def validar_region():
-    with open("UCI_std.csv","r",encoding="utf-8") as f:  
-        validacion_region = []
-        for fregion in f.readlines():
-            region = fregion.split(",") 
-            if region[0] not in validacion_region  and region[1] != "Región":
-                validacion_region .append(region[1])
-                validacion_region .append(region[2])
-    return validacion_region 
+	with open("UCI_std.csv","r",encoding="utf-8") as f:  
+		validacion_region = []
+		for fregion in f.readlines():
+			region = fregion.split(",") 
+			if region[0] != "Región" and region[0] not in validacion_region:
+				validacion_region.append(region[0])
+				validacion_region.append(region[1])
+		print(validacion_region)
+	return validacion_region
+
 
 def filtro_región(selección):
 		with open("UCI_std.csv","r",encoding="utf-8") as f:
 			filtrar = []
 			for region in f.readlines():
 				opcion = region.split(",")
-            	if selección in opcion: 
-                	filtrar.append(opcion)
+				if selección in opcion: 
+					filtrar.append (opcion[4])
+			datos_y =[]
+			for i in range(len(filtrar)-14,len(filtrar)):
+				datos_y.append(filtrar[i])
+			print(datos_y)
 		return filtrar
+
 	
 	
 
