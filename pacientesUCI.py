@@ -27,7 +27,6 @@ def carga_datos():
 """
 def main():
 	carga_datos()
-	print(regiones)
 	print("\nBienvenido al sistema de gestión de pacientes UCI nacional\nseleccione una de las siguientes opciones")
 	print("(1) Mostrar gráfico de pacientes UCI de las últimas dos semanas de una región")
 	print("(2) Generar análisis estadístico por región")
@@ -84,7 +83,7 @@ def graficaNoAcumulativo():
 	# tenemos que validar que lo ingresado sea efectivamente algo válido, de otra forma, solicitamos nuevamente el ingreso de la región
 	valida_region(seleccion, 'graficaNoAcumulativo')
 	# si pasó la validación del método valida_region(), entonces graficamos:
-	print(datosUCI[0])
+	print(datosUCI[0]) 
 
 
 
@@ -165,16 +164,6 @@ def UCImaxYmin():
 	print (region_min + "\t"+ "\t" + str(minimo))
 	print (region_max + "\t" + str(maximo))
 	
-
-
-
-
-
-
-
-
-
-
 
 
   # volver al menú principal
