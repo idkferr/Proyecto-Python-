@@ -28,6 +28,7 @@ def carga_datos():
 def main():
 	carga_datos()
 	validar_region()
+
 	print("\nBienvenido al sistema de gestión de pacientes UCI nacional\nseleccione una de las siguientes opciones")
 	print("(1) Mostrar gráfico de pacientes UCI de las últimas dos semanas de una región")
 	print("(2) Generar análisis estadístico por región")
@@ -38,6 +39,7 @@ def main():
 	if accion=='1':
 		opcion1()
 	if accion=='2':
+
 		validacionregion = validar_region()
 		region = input("Ingrese el nombre o código de la región:")
 		
@@ -50,6 +52,17 @@ def main():
 		media2 = media[7]
 		mediafinal = (media1+media2)/2
 		print(f"la media de la region {region} es {mediafinal}")
+		validacionregion =validar_region()
+		regiones = input("Ingrese el nombre o código de la región:")
+		while regiones not in validacionregion:
+
+			regiones = input("Ingrese el nombre de la región o su codigo: ")
+		datos = filtro_región(regiones)
+
+
+
+		input ("Ingrese el nombre o código de la región:")
+		filtro_región()
 		volver()
 	if accion=='3':
 		listarCodigoRegiones()
