@@ -1,2 +1,0 @@
-py pacientesUCI.py
-pause
