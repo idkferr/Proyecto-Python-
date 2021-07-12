@@ -28,8 +28,12 @@ def carga_datos():
 def main():
 	carga_datos()
 	validar_region()
+<<<<<<< HEAD
 	
 
+=======
+	print(regiones)
+>>>>>>> 7fc07ba03da10a82f1ce02f62fba46ea6f6b47d5
 
 	print("\nBienvenido al sistema de gestión de pacientes UCI nacional\nseleccione una de las siguientes opciones")
 	print("(1) Mostrar gráfico de pacientes UCI de las últimas dos semanas de una región")
@@ -41,6 +45,7 @@ def main():
 	if accion=='1':
 		opcion1()
 	if accion=='2':
+<<<<<<< HEAD
 		validacionregion =validar_region()
 		regiones = input("Ingrese el nombre o código de la región:")
 		while regiones not in validacionregion:
@@ -48,6 +53,10 @@ def main():
 			regiones = input("Ingrese el nombre de la región o su codigo: ")
 		datos = filtro_región(regiones)
 
+=======
+		input ("Ingrese el nombre o código de la región:")
+		filtro_región()
+>>>>>>> 7fc07ba03da10a82f1ce02f62fba46ea6f6b47d5
 		volver()
 	if accion=='3':
 		listarCodigoRegiones()
