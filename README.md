@@ -1,8 +1,8 @@
-# 🏥 Gestión de pacientes UCI en Chile
+# Gestión de pacientes UCI en Chile
 
 Programa de consola en **Python** que analiza los datos públicos de pacientes en Unidades de Cuidados Intensivos (UCI) por región de Chile, durante la pandemia de COVID-19.
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 El programa muestra un menú con estas opciones:
 
@@ -13,14 +13,14 @@ El programa muestra un menú con estas opciones:
 
 Se puede elegir la región por nombre o por código, y el programa valida lo que se ingresa.
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - Python 3
 - `statistics` (biblioteca estándar)
 - `matplotlib` para los gráficos
 - Datos en CSV (`UCI_std.csv`)
 
-## 🚀 Cómo ejecutarlo
+## Cómo ejecutarlo
 
 ```bash
 git clone https://github.com/idkferr/Proyecto-Python-.git
@@ -31,7 +31,7 @@ python pacientesUCI.py
 
 En Windows también se puede abrir con `pacientesUCII.bat`.
 
-## 📁 Archivos
+## Archivos
 
 | Archivo | Contenido |
 |---|---|
@@ -39,6 +39,6 @@ En Windows también se puede abrir con `pacientesUCII.bat`.
 | `UCI_std.csv` | Datos de pacientes UCI por región y fecha |
 | `diagrama Alto Nivel.jpeg` | Diagrama de alto nivel del programa |
 
-## 👥 Contexto
+## Contexto
 
 Proyecto del curso *Fundamentos de Programación* (2021), mi primer proyecto en Python.
